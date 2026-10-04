@@ -1,16 +1,60 @@
-# React + Vite
+# Navis AI - Personal AI Security Agent
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Navis AI is a web application that helps users stay safe from online scams and phishing. The user pastes an email, SMS, or chat message, and Navis AI analyses it and explains whether it is safe or risky.
 
-Currently, two official plugins are available:
+This repository contains the **frontend** (React + Vite). The backend (Flask) is developed separately.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Features
 
-## React Compiler
+- Paste any email, SMS, or chat message and click **Analyse**
+- Risk Level: Low / Medium / High
+- Final Decision: Safe or Risky, with clear reasons
+- Clarifying questions for Medium risk ("Do you know this sender?", "Were you expecting this message?")
+- Final recommendation based on the user's answers
+- Modern dark theme with cyan accents, works on desktop and phone screens
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Tech Stack
 
-## Expanding the Oxlint configuration
+- React
+- Vite
+- CSS
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+## Project Structure
+
+```
+src/
+  api/analyse.js              Sends the message to the Flask backend
+  components/
+    Header.jsx                Title and tagline
+    MessageBox.jsx            Text box and Analyse button
+    ResultCard.jsx            Risk level, decision, and reasons
+    ClarifyQuestions.jsx      Questions for Medium risk
+  App.jsx                     Main page
+  App.css                     Styles
+```
+
+## How to Run
+
+1. Install Node.js
+2. Open a terminal in this folder
+3. Run `npm install`
+4. Run `npm run dev`
+5. Open http://localhost:5173/
+
+## Connecting to the Backend
+
+Open `src/components/MessageBox.jsx` and change:
+
+```
+const USE_BACKEND = false
+```
+
+to `true`. The backend address is set in `src/api/analyse.js`.
+
+## Future Scope
+
+- Continuous background monitoring of emails and messages
+- Automatic threat detection without manual pasting
+- File and attachment scanning
+- Mobile application version
+- Fully autonomous protection mode
